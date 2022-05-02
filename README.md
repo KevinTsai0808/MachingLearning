@@ -22,5 +22,20 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 <img width="1360" alt="截圖 2022-05-02 上午9 48 15" src="https://user-images.githubusercontent.com/103521272/166175141-7927da9c-e819-462f-a93e-f10535296542.png">
 
 
-這邊對底下會用到的函式先做定義，我們先利用 same_seed 來讓我們每次跑模型時可以重現之前的實驗結果，幫助我們觀察改變參數的前後對比。下一個函式要切分出 Training set 和 Validation set。最後一個函式則在訓練完模型後要做預測時會用到，主要就是將前面訓練好的模型套用在 Testing data 上並儲存結果。
-<img width="1360" alt="截圖 2022-05-02 上午10 06 02" src="https://user-images.githubusercontent.com/103521272/166176087-3abb8894-56b2-4c92-8a94-fcd71aa9b060.png">
+這邊對底下會用到的函式先做定義：
+* same_seed：讓我們每次跑模型時可以重現之前的實驗結果，幫助我們觀察改變參數的前後對比。
+* train_valid_split：從 Training data 切分出 Training set 和 Validation set。
+* predict：在訓練完模型後要做預測時會用到，主要就是將前面訓練好的模型套用在 Testing data 上並儲存結果。
+
+<img width="1360" alt="截圖 2022-05-02 上午10 24 13" src="https://user-images.githubusercontent.com/103521272/166177199-1968cf23-66bd-4f12-99e4-75db0f0dc355.png">
+
+接下來寫一個 class 來將資料讀進 Pytorch 並定義函式來讀取 tensor 的長度、內容。
+
+<img width="1360" alt="截圖 2022-05-02 上午10 30 34" src="https://user-images.githubusercontent.com/103521272/166177530-dddd219d-d48e-40b3-8bd0-f98d88819ba5.png">
+
+這邊定義我們的模型，第一層輸出了16個 ReLU funtion ，第二層輸出了8個 ReLU funtion 最後得到預測值 ŷ。我嘗試用 Sigmoid 去做訓練，但結果比 ReLU 差。
+
+<img width="1361" alt="截圖 2022-05-02 上午10 42 48" src="https://user-images.githubusercontent.com/103521272/166178308-e33642a2-6739-4a55-b34d-f2b6a41c290a.png">
+
+
+
