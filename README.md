@@ -67,3 +67,8 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 
 <img width="1358" alt="截圖 2022-05-02 下午4 22 57" src="https://user-images.githubusercontent.com/103521272/166205652-9965aeab-4e73-4dde-9b3b-9c2409d1d5cc.png">
 
+資料處理完接著就開始訓練啦～執行結果記錄了每一個 epoch 的 Training set loss 和 Validation data set loss ，可以看到在第1737個 epoch 跑完後更新了最低的 loss 為0.876，這也是我在 Validation set 上得到的最低的 loss 。因此在結束訓練後會儲存剛剛訓練出 0.876 的模型到前面指定的路徑中。
+
+<img width="1363" alt="截圖 2022-05-02 下午4 38 45" src="https://user-images.githubusercontent.com/103521272/166207508-6b370d9e-439a-456d-a732-d52b58367539.png">
+
+
