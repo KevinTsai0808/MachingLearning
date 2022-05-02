@@ -37,5 +37,8 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 
 <img width="1361" alt="截圖 2022-05-02 上午10 42 48" src="https://user-images.githubusercontent.com/103521272/166178308-e33642a2-6739-4a55-b34d-f2b6a41c290a.png">
 
+接下來選擇 label 和 features ，lable 就是最後一行第五天的 tested positive ，而 features 我選擇的是除了 one-hot vector ，也就是個案居住在哪裡以外的資料。
+
+<img width="1358" alt="截圖 2022-05-02 下午12 55 00" src="https://user-images.githubusercontent.com/103521272/166186046-a186aae1-912f-48e1-8a91-c4a9d15f1e6a.png">
 
 
