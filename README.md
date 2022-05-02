@@ -47,7 +47,7 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 
 上面的 loss function, optimizer 都決定好後就正式執行計算 loss 並更新參數的動作。
 
-對每一個 epoch 我們會建立一個進度條和紀錄 loss 的 list 來放入每一個 batch 的 loss ，每一個 batch 跑完都會計算一次 loss 並更新參數，假設一個 epoch 有8個 batch ，那麼在跑完一個 epoch 後 list 就會紀錄8個 loss 值，接著計算這8個 loss 值的平均，算出來的值就代表了目前模型在 Training set 的 loss。
+對每一個 epoch 我們會建立一個進度條和紀錄 loss 的 list 來放入每一個 batch 的 loss ，每一個 batch 跑完都會計算一次 loss 並更新參數，假設一個 epoch 有8個 batch ，那麼在跑完一個 epoch 後 list 就會紀錄8個 loss 值，也代表更新了8次參數， step 變數就是紀錄總共更新了幾次參數，接著計算這8個 loss 值的平均，算出來的值就代表了目前模型在 Training set 的 loss。
 
 在 Training set 跑完後接著目前的模型也要在 Validation set 上跑以便看出目前模型的好壞，檢查是否有 overfitting，和剛剛在 Training set 上跑的過程不同的是要先調成預測模式，並且過程中會計算 loss 但不會做 Gradient decent，因為我們只是要看模型的好壞，因此不做參數更新。
 
@@ -70,5 +70,8 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 資料處理完接著就開始訓練啦～執行結果記錄了每一個 epoch 的 Training set loss 和 Validation data set loss ，可以看到在第1737個 epoch 跑完後更新了最低的 loss 為0.876，這也是我在 Validation set 上得到的最低的 loss 。因此在結束訓練後會儲存剛剛訓練出 0.876 的模型到前面指定的路徑中。
 
 <img width="1363" alt="截圖 2022-05-02 下午4 38 45" src="https://user-images.githubusercontent.com/103521272/166207508-6b370d9e-439a-456d-a732-d52b58367539.png">
+
+以下是利用 tensorboard 繪製出的 loss 圖，由於前面的 SummaryWriter 括號內沒設定路徑，因此預設會放在 runs 的資料夾，這邊於是讀取 runs 中的純量繪製圖表。
+<img width="1357" alt="截圖 2022-05-02 下午6 07 14" src="https://user-images.githubusercontent.com/103521272/166218278-a0841e40-13ec-4b7f-84b8-345c0112ddc8.png">
 
 
