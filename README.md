@@ -54,3 +54,16 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 每跑完一次 epoch 會比較目前儲存最低的 loss，如果剛剛算出來的 loss 比較小，則更新成最低的 loss，為了防止 overfitting ，這邊設定了 early stop，如果最低的 loss 在跑完400個 epoch 後都沒有更新訓練就停止。
 
 <img width="1348" alt="截圖 2022-05-02 下午2 57 39" src="https://user-images.githubusercontent.com/103521272/166196167-35d1b7a5-9676-4b3d-bfd4-5a8282c65418.png">
+
+針對前面的參數包含 seed 、 Validation set 的比率、要跑的 epoch 數、batch 大小、 Gradient decent 的 learning rate 、 early stop 和模型儲存路徑都在這個地方做設定。
+
+原本設定 batch size 是256，我調成了128後 loss 下降許多，原因可能是 batch  數量大時，當其中幾個 batch 卡在 critical point 時，其他 batch 仍然可以繼續訓練，相對於 batch 數量小更不容易停止訓練。
+
+<img width="1360" alt="截圖 2022-05-02 下午3 47 13" src="https://user-images.githubusercontent.com/103521272/166201524-f337d9d5-4a25-4e1d-944c-aa32df9c763e.png">
+
+前面都是建立函式，現在要真正的匯入資料進行訓練，可以從執行結果看到切分後的 Training set, Validation set 、 Testing data 的資料筆數以及取的 feature 數，接著用前面定義的 dataset 將資料轉變成 tensor 的形式儲存進 Pytorch。
+
+資料讀進 Pytorch 後用 Dataloader 將資料依照前面設定的 batch size 分群， shuffle 用意是讓每一次 epoch 的 batch 資料都不一樣。
+
+<img width="1358" alt="截圖 2022-05-02 下午4 22 57" src="https://user-images.githubusercontent.com/103521272/166205652-9965aeab-4e73-4dde-9b3b-9c2409d1d5cc.png">
+
