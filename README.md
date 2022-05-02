@@ -3,7 +3,7 @@
 > 這學期透過台大的開放式課程學習機器學習，每一次的作業練習過程都會放上來以便加深自己的印象並記錄學習過程。
 
 ## 資料描述：
-作業給定了美國過去五天的個案狀況，包括居住地，是否配戴口罩、外出等等，最後要預測出新一批人在第五天檢測陽性的機率。
+作業給定了美國過去五天的個案狀況，包括居住地，是否配戴口罩、外出等等，最後要預測出新一批人在第五天檢測陽性的機率。這次的作業是要對助教給予的程式加以修改以得到更好的模型並降低 loss 。
 
 Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各16個狀態，最後一行則是我們的 label ，也就是第五天的 tested positive ，每一個row則代表了不同的個案。
 
@@ -74,5 +74,8 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 以下是利用 tensorboard 繪製出的 loss 圖，由於前面的 SummaryWriter 括號內沒設定路徑，因此預設會放在 runs 的資料夾，這邊於是讀取 runs 中的純量繪製圖表。
 
 <img width="1357" alt="截圖 2022-05-02 下午6 07 14" src="https://user-images.githubusercontent.com/103521272/166218278-a0841e40-13ec-4b7f-84b8-345c0112ddc8.png">
+
+最後就是將前面訓練好的模型匯入並進行預測，預測的結果會寫入 csv 檔。
+<img width="1365" alt="截圖 2022-05-03 上午12 25 35" src="https://user-images.githubusercontent.com/103521272/166270640-68d2b078-83ff-4dcd-8ca8-e6efc89d99c0.png">
 
 
