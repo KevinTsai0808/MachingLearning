@@ -33,12 +33,24 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 
 <img width="1360" alt="截圖 2022-05-02 上午10 30 34" src="https://user-images.githubusercontent.com/103521272/166177530-dddd219d-d48e-40b3-8bd0-f98d88819ba5.png">
 
-這邊定義我們的模型，第一層輸出了16個 ReLU funtion ，第二層輸出了8個 ReLU funtion 最後得到預測值 ŷ。我嘗試用 Sigmoid 去做訓練，但結果比 ReLU 差。
+這邊定義我們的模型，也就是機器學習的第一個步驟，第一層輸出了16個 ReLU funtion ，第二層輸出了8個 ReLU funtion 最後得到預測值 ŷ。我嘗試用 Sigmoid 去做訓練，但結果比 ReLU 差。
 
 <img width="1361" alt="截圖 2022-05-02 上午10 42 48" src="https://user-images.githubusercontent.com/103521272/166178308-e33642a2-6739-4a55-b34d-f2b6a41c290a.png">
 
-接下來選擇 label 和 features ，lable 就是最後一行第五天的 tested positive ，而 features 我選擇的是除了 one-hot vector ，也就是個案居住在哪裡以外的資料。
+接下來選擇 label 和 features ，lable 就是最後一行第五天的 tested positive ，而 features 我選擇的是除了 one-hot vector ，也就是個案居住在哪裡和 id 以外的資料。
 
 <img width="1358" alt="截圖 2022-05-02 下午12 55 00" src="https://user-images.githubusercontent.com/103521272/166186046-a186aae1-912f-48e1-8a91-c4a9d15f1e6a.png">
 
+然後是定義訓練的過程，這邊要做的是機器學習的第二、三個步驟，我們要決定我們的 loss function 和 optimizer，這邊分別選擇 MSE 和最基本的SGD ，之後有時間會再試試看 Adam，接著建立一個目錄來存取我們訓練好的 model。
 
+<img width="1362" alt="截圖 2022-05-02 下午2 43 23" src="https://user-images.githubusercontent.com/103521272/166194698-a0e2b119-ac5d-45cc-8429-b24233a745fa.png">
+
+上面的 loss function, optimizer 都決定好後就正式執行計算 loss 並更新參數的動作。
+
+對每一個 epoch 我們會建立一個進度條和紀錄 loss 的 list 來放入每一個 batch 的 loss ，每一個 batch 跑完都會計算一次 loss 並更新參數，假設一個 epoch 有8個 batch ，那麼在跑完一個 epoch 後 list 就會紀錄8個 loss 值，接著計算這8個 loss 值的平均，算出來的值就代表了目前模型在 Training set 的 loss。
+
+在 Training set 跑完後接著目前的模型也要在 Validation set 上跑以便看出目前模型的好壞，檢查是否有 overfitting，和剛剛在 Training set 上跑的過程不同的是要先調成預測模式，並且過程中會計算 loss 但不會做 Gradient decent，因為我們只是要看模型的好壞，因此不做參數更新。
+
+每跑完一次 epoch 會比較目前儲存最低的 loss，如果剛剛算出來的 loss 比較小，則更新成最低的 loss，為了防止 overfitting ，這邊設定了 early stop，如果最低的 loss 在跑完400個 epoch 後都沒有更新訓練就停止。
+
+<img width="1348" alt="截圖 2022-05-02 下午2 57 39" src="https://user-images.githubusercontent.com/103521272/166196167-35d1b7a5-9676-4b3d-bfd4-5a8282c65418.png">
