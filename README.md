@@ -72,6 +72,7 @@ Training Data 包含了 id 、37維的 one-hot vector以及第一到第五天各
 <img width="1363" alt="截圖 2022-05-02 下午4 38 45" src="https://user-images.githubusercontent.com/103521272/166207508-6b370d9e-439a-456d-a732-d52b58367539.png">
 
 以下是利用 tensorboard 繪製出的 loss 圖，由於前面的 SummaryWriter 括號內沒設定路徑，因此預設會放在 runs 的資料夾，這邊於是讀取 runs 中的純量繪製圖表。
+
 <img width="1357" alt="截圖 2022-05-02 下午6 07 14" src="https://user-images.githubusercontent.com/103521272/166218278-a0841e40-13ec-4b7f-84b8-345c0112ddc8.png">
 
 
